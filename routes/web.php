@@ -1,5 +1,12 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DonorsCategoryController;
+use App\Http\Controllers\ExpensesCategoryController;
+use App\Http\Controllers\IncomesController;
+use App\Http\Controllers\IsExpensesController;
+use App\Http\Controllers\ReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +20,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [AuthController::class, 'index'])->name('login');
+Route::get('/dashboard', [DashboardController::class, 'index']);
+Route::get('/donors-category', [DonorsCategoryController::class, 'index']);
+Route::get('/incomes', [IncomesController::class, 'index']);
+Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
+Route::get('/isexpense', [IsExpensesController::class, 'index']);
+Route::get('/report', [ReportController::class, 'index']);
