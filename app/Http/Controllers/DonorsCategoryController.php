@@ -11,4 +11,10 @@ class DonorsCategoryController extends Controller
         $title = "Kategori Donatur";
         return view('contents.donorscategory.index', compact('title'));
     }
+
+    public function edit()
+    {
+        $title = "Edit Kategori Donatur";
+        return view('contents.donorscategory.edit', compact('title'));
+    }
 }
