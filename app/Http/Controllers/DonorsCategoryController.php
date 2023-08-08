@@ -40,3 +40,4 @@ class DonorsCategoryController extends Controller
         return view('contents.donorscategory.edit', compact('title', 'donorsCategory'));
     }
 }
+
