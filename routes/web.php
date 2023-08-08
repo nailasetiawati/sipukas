@@ -27,3 +27,4 @@ Route::get('/incomes', [IncomesController::class, 'index']);
 Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
 Route::get('/isexpense', [IsExpensesController::class, 'index']);
 Route::get('/report', [ReportController::class, 'index']);
+Route::get('/donors-category/{id}/edit', [DonorsCategoryController::class, 'edit']);
