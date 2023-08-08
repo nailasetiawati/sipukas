@@ -28,3 +28,6 @@ Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
 Route::get('/isexpense', [IsExpensesController::class, 'index']);
 Route::get('/report', [ReportController::class, 'index']);
 Route::get('/donors-category/{id}/edit', [DonorsCategoryController::class, 'edit']);
+Route::get('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'edit']);
+Route::get('/incomes/{id}/edit', [IncomesController::class, 'edit']);
+Route::get('/isexpense/{id}/edit', [IsExpensesController::class, 'edit']);
