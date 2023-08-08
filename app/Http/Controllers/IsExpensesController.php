@@ -11,6 +11,13 @@ class IsExpensesController extends Controller
         $title = "Dana Pengeluaran";
         return view('contents.isexpenses.index', compact('title'));
     }
+
+    public function create()
+    {
+        $title = "Tambah Dana Pengeluaran";
+        return view('contents.isexpenses.edit', compact('title'));
+    }
+
     public function edit()
     {
         $title = "Edit Dana Pengeluaran";
