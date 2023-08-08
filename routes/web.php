@@ -19,15 +19,30 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+// Auth
 Route::get('/', [AuthController::class, 'index'])->name('login');
+
+// Dashboard
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// Donors
 Route::get('/donors-category', [DonorsCategoryController::class, 'index']);
-Route::get('/incomes', [IncomesController::class, 'index']);
-Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
-Route::get('/isexpense', [IsExpensesController::class, 'index']);
-Route::get('/report', [ReportController::class, 'index']);
+Route::get('/donors-category/create', [DonorsCategoryController::class, 'create']);
+Route::post('/donors-category/create', [DonorsCategoryController::class, 'store']);
 Route::get('/donors-category/{id}/edit', [DonorsCategoryController::class, 'edit']);
-Route::get('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'edit']);
+
+// incomes
+Route::get('/incomes', [IncomesController::class, 'index']);
+Route::get('/incomes/create', [IncomesController::class, 'create']);
 Route::get('/incomes/{id}/edit', [IncomesController::class, 'edit']);
+
+// Expenses
+Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
+Route::get('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'edit']);
+
+// IsExpenses
+Route::get('/isexpense', [IsExpensesController::class, 'index']);
 Route::get('/isexpense/{id}/edit', [IsExpensesController::class, 'edit']);
+
+// Report
+Route::get('/report', [ReportController::class, 'index']);

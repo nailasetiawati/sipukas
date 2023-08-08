@@ -11,6 +11,13 @@ class IncomesController extends Controller
         $title = "Dana Pemasukan";
         return view('contents.income.index', compact('title'));
     }
+
+    public function create()
+    {
+        $title = "Tambah Dana Pemasukan";
+        return view('contents.income.create', compact('title'));
+    }
+
     public function edit()
     {
         $title = "Edit Dana Pemasukan";
