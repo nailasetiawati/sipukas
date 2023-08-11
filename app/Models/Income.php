@@ -5,14 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DonorsCategory extends Model
+class Income extends Model
 {
     use HasFactory;
 
     protected $guarded = ['id'];
 
-    public function Income()
+    public function DonorsCategory()
     {
-        return $this->hasMany(Income::class);
+        return $this->belongsTo(DonorsCategory::class, 'donor_category_id');
     }
 }

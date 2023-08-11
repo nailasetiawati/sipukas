@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Income;
 use Illuminate\Http\Request;
 
 class IncomesController extends Controller
@@ -9,7 +10,8 @@ class IncomesController extends Controller
     public function index()
     {
         $title = "Dana Pemasukan";
-        return view('contents.income.index', compact('title'));
+        $incomes = Income::all();
+        return view('contents.income.index', compact('title', 'incomes'));
     }
 
     public function create()
@@ -17,6 +19,7 @@ class IncomesController extends Controller
         $title = "Tambah Dana Pemasukan";
         return view('contents.income.create', compact('title'));
     }
+
 
     public function edit()
     {

@@ -2,10 +2,35 @@
 
 @section('style')
   @include('components.style.datatable')
+  <link rel="stylesheet" href="/css/swall.min.css">
 @endsection
 
 @section('script')
     @include('components.script.datatable')
+    <script src="/js/swall.min.js"></script>
+    <script>
+        $(document).on('click', '#delete', function (e) {
+    e.preventDefault();
+    var id = $(this).data('id');
+    Swal.fire({
+            title: "Are you sure!",
+            icon: "warning",
+            confirmButtonText: "Yakin!",
+            cancelButtonText: "Tidak",
+            showCancelButton: true,
+        },
+        function() {
+            $.ajax({
+                url: {{ route('category.delete') }},
+                type: 'DELETE',
+                data: {id:id},
+                success: function (data) {
+                              //
+                    }         
+            });
+    });
+});
+    </script>
 @endsection
 
 @section('content')
@@ -57,7 +82,7 @@
                             <td>{{ $data->name }}</td>
                             <td class="text-center">
                                 <a href="/donors-category/{{ $data->id }}/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                <a href="" class="btn btn-danger" id="delete" data-id="{{$data->id}}"><i class="fas fa-trash"></i></a>
                             </td>
                         </tr>
                         @endforeach

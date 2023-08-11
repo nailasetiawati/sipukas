@@ -41,9 +41,11 @@
         @yield('content')
 
         @include('components.footer')
-    </div>
-  </div>
 
+      </div>
+    </div>
+    
+    @include('sweetalert::alert')
   <!-- General JS Scripts -->
   <script src="/modules/jquery.min.js"></script>
   <script src="/modules/popper.js"></script>

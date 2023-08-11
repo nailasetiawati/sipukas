@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\DonorsCategory;
 use Illuminate\Http\Request;
+use Alert;
 
 class DonorsCategoryController extends Controller
 {
     public function index()
     {
         $title = "Kategori Donatur";
+        $swal_title = 'Hapus Kategori!';
+        $swal_text  = 'Apakah anda yakin ingin menghapus kategori ini?';
         $donorsCategory = DonorsCategory::all();
+        confirmDelete($swal_title, $swal_text);
         return view('contents.donorscategory.index', compact('title', 'donorsCategory'));
     }
 
@@ -39,5 +43,25 @@ class DonorsCategoryController extends Controller
         $donorsCategory = DonorsCategory::where('id', $id)->get();
         return view('contents.donorscategory.edit', compact('title', 'donorsCategory'));
     }
-}
 
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'name'  =>  'required|min:4'
+        ]);
+
+        $update = DonorsCategory::where('id', $id)->update([
+            'name'  =>  $validatedData['name']
+        ]);
+
+        return redirect('/donors-category')->with('Berhasil', 'Kategori ' . $request->name . ' Berhasil Diperbarui!');
+    }
+
+    public function delete($id)
+    {
+        $category = DonorsCategory::where('id', $id)->first();
+        DonorsCategory::where('id', $id)->delete();
+
+        return redirect('/donors-category')->with('Berhasil', 'Kategori ' . $category->name . ' Berhasil Dihapus!');
+    }
+}

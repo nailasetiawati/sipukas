@@ -11,6 +11,11 @@ class ExpensesCategoryController extends Controller
         $title = "Kategori Pengeluaran";
         return view('contents.expensescategory.index', compact('title'));
     }
+    public function create()
+    {
+        $title = "Tambah Kategori Pengeluaran";
+        return view('contents.expensescategory.create', compact('title'));
+    }
     public function edit()
     {
         $title = "Edit Kategori Pengeluaran";

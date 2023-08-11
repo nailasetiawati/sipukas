@@ -1,5 +1,13 @@
 @extends('app.main')
 
+@section('style')
+  @include('components.style.datatable')
+@endsection
+
+@section('script')
+    @include('components.script.datatable')
+@endsection
+
 @section('content')
      <!-- Main Content -->
      <div class="main-content">
@@ -45,16 +53,18 @@
                       </tr>
                   </thead>
                   <tbody>
+                    @foreach ($incomes as $data)
                     <tr>
-                        <td>1</td>
-                        <td>Rp. 90.000.000</td>
-                        <td>Indri</td>
-                        <td>Nasabah</td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>Rp. {{ $data->nominal }}</td>
+                        <td>{{ $data->donor_name }}</td>
+                        <td>{{ $data->DonorsCategory->name }}</td>
                         <td class="px-5 text-center">
                             <a href="/incomes/1/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>

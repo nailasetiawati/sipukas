@@ -30,6 +30,8 @@ Route::get('/donors-category', [DonorsCategoryController::class, 'index']);
 Route::get('/donors-category/create', [DonorsCategoryController::class, 'create']);
 Route::post('/donors-category/create', [DonorsCategoryController::class, 'store']);
 Route::get('/donors-category/{id}/edit', [DonorsCategoryController::class, 'edit']);
+Route::post('/donors-category/{id}/edit', [DonorsCategoryController::class, 'update']);
+Route::delete('/donors-category/delete', [DonorsCategoryController::class, 'delete'])->name('category.delete');
 
 // incomes
 Route::get('/incomes', [IncomesController::class, 'index']);
@@ -38,6 +40,7 @@ Route::get('/incomes/{id}/edit', [IncomesController::class, 'edit']);
 
 // Expenses
 Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
+Route::get('/expenses-category/create', [ExpensesCategoryController::class, 'create']);
 Route::get('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'edit']);
 
 // IsExpenses

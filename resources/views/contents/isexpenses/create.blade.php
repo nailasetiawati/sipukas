@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="/isexpense/create" method="POST">
+                <form action="/isexpenses/create" method="POST">
                     @csrf
                     <div class="form-group mb-3">
                         <label for="nominal" class="text-primary">Nominal :</label>
@@ -26,7 +26,14 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label for="name" class="text-primary">Nama Donatur :</label>
+                        <label for="isExpenses" class="text-primary">Kategori Pengeluaran :</label>
+                        <select name="is_expenses_id" id="isExpenses" class="form-control">
+                            <option value="1">Pembelian Barang</option>
+                            <option value="2">ATK</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="name" class="text-primary">Deskripsi :</label>
                         <input type="text" name="name" class="form-control @error('name')
                             is-invalid
                         @enderror">
@@ -35,14 +42,7 @@
                         @enderror
                     </div>
                     <div class="form-group mb-3">
-                        <label for="donorsCategory" class="text-primary">Kategori Donatur :</label>
-                        <select name="donor_category_id" id="donorsCategory" class="form-control">
-                            <option value="1">Karyawan</option>
-                            <option value="2">Nasabah</option>
-                        </select>
-                    </div>
-                        <div class="form-group mb-3">
-                        <label for="name" class="text-primary">Nama Donatur :</label>
+                        <label for="name" class="text-primary">Bukti Gambar :</label>
                         <input type="file" name="name" class="form-control @error('name')
                             is-invalid
                         @enderror">
@@ -51,7 +51,7 @@
                         @enderror
                     </div>
                     <div class="float-right mt-5">
-                        <a href="/incomes" class="btn btn-danger">Cancel</a>
+                        <a href="/isexpense" class="btn btn-danger">Cancel</a>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>

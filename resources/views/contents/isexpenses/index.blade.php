@@ -41,7 +41,7 @@
                           <th>Nominal</th>
                           <th>Kategori Pengeluaran</th>
                           <th>Deskripsi</th>
-                          <th>Bukti Gambar</th>
+                          <th class="text-center">Bukti Gambar</th>
                           <th class="px-5 text-center">Aksi</th>
                       </tr>
                   </thead>
@@ -51,7 +51,7 @@
                         <td>Rp. 90.000.000</td>
                         <td>wkwk</td>
                         <td>ccccccc</td>
-                        <td><img src="https://i0.wp.com/blog.dimensidata.com/wp-content/uploads/2014/10/Spesifikasi-dan-Tipe-Proyektor-INFOCUS-Terbaru-Infocus-DLP-Projector-IN124-Black_1.jpg" height="150" width="150"></td>
+                        <td class="mx-auto"><img src="https://i0.wp.com/blog.dimensidata.com/wp-content/uploads/2014/10/Spesifikasi-dan-Tipe-Proyektor-INFOCUS-Terbaru-Infocus-DLP-Projector-IN124-Black_1.jpg" height="200" width="250"></td>
                         <td class="px-5 text-center">
                             <a href="/isexpense/1/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
                             <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>

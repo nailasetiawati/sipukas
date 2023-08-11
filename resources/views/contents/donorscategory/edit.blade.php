@@ -15,10 +15,16 @@
             </div>
             <div class="card-body">
               @foreach ($donorsCategory as $data)                  
-              <form action="">
+              <form action="/donors-category/{{ $data->id }}/edit" method="POST">
+                @csrf
                 <div class="form-group mb-3">
                   <label for="name" class="text-primary">Nama Kategori :</label>
-                  <input type="text" class="form-control" value="{{ $data->name }}">
+                  <input type="text" name="name" class="form-control @error('name')
+                    is-invalid
+                  @enderror" value="{{ $data->name }}">
+                  @error('name')
+                      <p class="text-danger">{{ $message }}</p>
+                  @enderror
                 </div>
                 <div class="float-right mt-5">
                   <a href="/donors-category" class="btn btn-danger">Cancel</a>

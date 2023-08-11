@@ -36,7 +36,7 @@
                         <button class="btn btn-sm btn-secondary col w-75 mb-2"><i class="fas fa-print dt-print"></i> Print</button>
                     </div>
                 </div>
-                <a href="/expenses-category/1/edit" class="btn btn-sm btn-outline-primary rounded mb-2"><i
+                <a href="/expenses-category/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                         class="fas fa-plus"></i> Tambah</a>
             </div>
             <hr>
