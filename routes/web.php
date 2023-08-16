@@ -41,7 +41,10 @@ Route::get('/incomes/{id}/edit', [IncomesController::class, 'edit']);
 // Expenses
 Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
 Route::get('/expenses-category/create', [ExpensesCategoryController::class, 'create']);
+Route::post('/expenses-category/create', [ExpensesCategoryController::class, 'store']);
 Route::get('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'edit']);
+Route::post('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'update']);
+Route::delete('/expenses-category/delete', [ExpensesCategoryController::class, 'delete']);
 
 // IsExpenses
 Route::get('/isexpense', [IsExpensesController::class, 'index']);

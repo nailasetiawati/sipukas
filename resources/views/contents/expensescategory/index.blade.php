@@ -50,16 +50,18 @@
                             <th class="px-5 text-center">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>pembelian barang</td>
-                            <td class="px-5 text-center">
-                                <a href="/expenses-category/1/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
-                                <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
+                    @foreach ($expensesCategory as $data)      
+                    <tbody>    
+                           <tr>
+                               <td>{{ $loop->iteration }}</td>
+                               <td>{{ $data->name }}</td>
+                               <td class="px-5 text-center">
+                                   <a href="/expenses-category/1/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
+                                   <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                               </td>
+                           </tr>           
+                        </tbody>
+                        @endforeach
                 </table>
             </div>
         </div>

@@ -14,9 +14,8 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="/expensescategory/create" method="POST">
+                <form action="/expenses-category/create" method="POST" encytype="multipart/form-data">
                     @csrf
-                   
                     <div class="form-group mb-3">
                         <label for="name" class="text-primary">Nama Kategori Pengeluaran :</label>
                         <input type="text" name="name" class="form-control @error('name')
@@ -26,9 +25,8 @@
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    
                     <div class="float-right mt-5">
-                        <a href="/expensescategory" class="btn btn-danger">Cancel</a>
+                        <a href="/expenses-category" class="btn btn-danger">Cancel</a>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
