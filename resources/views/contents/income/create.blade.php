@@ -27,18 +27,19 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="name" class="text-primary">Nama Donatur :</label>
-                        <input type="text" name="name" class="form-control @error('name')
+                        <input type="text" name="donor_name" class="form-control @error('donor_name')
                             is-invalid
                         @enderror">
-                        @error('name')
+                        @error('donor_name')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="donorsCategory" class="text-primary">Kategori Donatur :</label>
                         <select name="donor_category_id" id="donorsCategory" class="form-control">
-                            <option value="1">Karyawan</option>
-                            <option value="2">Nasabah</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="float-right mt-5">

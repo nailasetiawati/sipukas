@@ -31,12 +31,15 @@ Route::get('/donors-category/create', [DonorsCategoryController::class, 'create'
 Route::post('/donors-category/create', [DonorsCategoryController::class, 'store']);
 Route::get('/donors-category/{id}/edit', [DonorsCategoryController::class, 'edit']);
 Route::post('/donors-category/{id}/edit', [DonorsCategoryController::class, 'update']);
-Route::delete('/donors-category/delete', [DonorsCategoryController::class, 'delete'])->name('category.delete');
+Route::get('/donors-category/{id}/delete', [DonorsCategoryController::class, 'delete'])->name('category_delete');
 
 // incomes
 Route::get('/incomes', [IncomesController::class, 'index']);
 Route::get('/incomes/create', [IncomesController::class, 'create']);
+Route::post('/incomes/create', [IncomesController::class, 'store']);
 Route::get('/incomes/{id}/edit', [IncomesController::class, 'edit']);
+Route::post('/incomes/{id}/edit', [IncomesController::class, 'update']);
+Route::get('/incomes/{id}/delete', [IncomesController::class, 'delete']);
 
 // Expenses
 Route::get('/expenses-category', [ExpensesCategoryController::class, 'index']);
@@ -44,7 +47,8 @@ Route::get('/expenses-category/create', [ExpensesCategoryController::class, 'cre
 Route::post('/expenses-category/create', [ExpensesCategoryController::class, 'store']);
 Route::get('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'edit']);
 Route::post('/expenses-category/{id}/edit', [ExpensesCategoryController::class, 'update']);
-Route::delete('/expenses-category/delete', [ExpensesCategoryController::class, 'delete']);
+Route::get('/expenses-category/{id}/delete', [ExpensesCategoryController::class, 'delete']);
+
 
 // IsExpenses
 Route::get('/isexpense', [IsExpensesController::class, 'index']);

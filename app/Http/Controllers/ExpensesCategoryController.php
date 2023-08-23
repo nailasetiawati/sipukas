@@ -28,7 +28,26 @@ class ExpensesCategoryController extends Controller
     public function edit($id)
     {
         $title = "Edit Kategori Pengeluaran";
-        $expensesCategory   =   ExpensesCategory::find($id);
+        $expensesCategory   =   ExpensesCategory::where('id', $id)->get();
         return view('contents.expensescategory.edit', compact('title', 'expensesCategory'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $validateData = $request->validate([
+            'name' => 'required'
+        ]);
+
+        ExpensesCategory::where('id', $id)->update([
+            'name' => $validateData['name']
+        ]);
+        return redirect('/expenses-category')->with('Berhasil', 'Kategori ' . $request->name . ' Berhasil Diperbarui');
+    }
+
+    public function delete($id)
+    {
+        $Category = ExpensesCategory::where('id', $id)->first();
+        ExpensesCategory::where('id', $id)->delete();
+        return redirect('/expenses-category')->with('Berhasil', 'Kategori' . $Category->name . ' Berhasil Dihapus');
     }
 }

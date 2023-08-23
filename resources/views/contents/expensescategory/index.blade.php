@@ -9,6 +9,32 @@
 @endsection
 
 @section('content')
+@foreach ($expensesCategory as $item)
+<!-- Modal -->
+<div class="modal fade" id="modalDelete{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Perhatian!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah anda yakin akan menghapus kategory {{ $item->name }}?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="/expenses-category/{{ $item->id }}/delete" method="get">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Yakin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
      <!-- Main Content -->
      <div class="main-content">
         <section class="section">
@@ -57,7 +83,8 @@
                                <td>{{ $data->name }}</td>
                                <td class="px-5 text-center">
                                    <a href="/expenses-category/1/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
-                                   <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                                   <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete{{ $data->id }}"><i
+                                    class="fas fa-trash"></i></button>
                                </td>
                            </tr>           
                         </tbody>
