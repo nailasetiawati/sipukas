@@ -21,7 +21,13 @@ class ExpensesCategoryController extends Controller
 
     public function store(Request $request)
     {
-        ExpensesCategory::create($request->all());
+        $validateData = $request->validate([
+            'name' => 'required|min:4'
+        ]);
+
+        ExpensesCategory::create([
+            'name' => $validateData['name']
+        ]);
         return redirect('/expenses-category')->with('Berhasil', 'Kategori ' . $request->name . ' Berhasil Ditambahkan!');
     }
 

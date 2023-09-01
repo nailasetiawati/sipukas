@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IsExpenses;
 use Illuminate\Http\Request;
 
 class IsExpensesController extends Controller

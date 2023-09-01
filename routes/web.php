@@ -53,6 +53,7 @@ Route::get('/expenses-category/{id}/delete', [ExpensesCategoryController::class,
 // IsExpenses
 Route::get('/isexpense', [IsExpensesController::class, 'index']);
 Route::get('/isexpense/create', [IsExpensesController::class, 'create']);
+Route::get('/isexpense/create', [IsExpensesController::class, 'store']);
 Route::get('/isexpense/{id}/edit', [IsExpensesController::class, 'edit']);
 
 // Report

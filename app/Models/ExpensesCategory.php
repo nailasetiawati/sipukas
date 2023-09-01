@@ -10,4 +10,9 @@ class ExpensesCategory extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    public function IsExpenses()
+    {
+        return $this->hasMany(IsExpenses::class);
+    }
 }
