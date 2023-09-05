@@ -1,6 +1,32 @@
 @extends('app.main')
 
 @section('content')
+{{-- @foreach ($expenses as $item)
+<!-- Modal -->
+<div class="modal fade" id="modalDelete{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Perhatian!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Apakah anda yakin akan menghapus dana pengeluaran {{ $item->nominal }} untuk?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <form action="/incomes/{{ $item->id }}/delete" method="get">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">Yakin</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach --}}
      <!-- Main Content -->
      <div class="main-content">
         <section class="section">
@@ -46,17 +72,19 @@
                       </tr>
                   </thead>
                   <tbody>
+                    @foreach ($expenses as $data)   
                     <tr>
-                        <td>1</td>
-                        <td>Rp. 90.000.000</td>
-                        <td>wkwk</td>
-                        <td>ccccccc</td>
-                        <td class="mx-auto"><img src="https://i0.wp.com/blog.dimensidata.com/wp-content/uploads/2014/10/Spesifikasi-dan-Tipe-Proyektor-INFOCUS-Terbaru-Infocus-DLP-Projector-IN124-Black_1.jpg" height="200" width="250"></td>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>Rp. {{ $data->nominal }}</td>
+                        <td>{{ $data->ExpenseCategory->name }}</td>
+                        <td>{{ $data->description }}</td>
+                        <td class="mx-auto p-2"><img src="/img/expense-image/{{ $data->image }}" height="100" width="150"></td>
                         <td class="px-5 text-center">
-                            <a href="/isexpense/1/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
-                            <a href="" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <a href="/isexpense/{{ $data->id }}/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
+                            <a href="/isexpense/{{ $data->id }}/delete" class="btn btn-danger"><i class="fas fa-trash"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                   </tbody>
               </table>
           </div>

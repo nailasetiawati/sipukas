@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ExpensesCategory;
 use Illuminate\Http\Request;
+use App\Models\ExpenseCategory;
 
 class ExpensesCategoryController extends Controller
 {
     public function index()
     {
         $title = "Kategori Pengeluaran";
-        $expensesCategory =  ExpensesCategory::all();
+        $expensesCategory =  ExpenseCategory::all();
         return view('contents.expensescategory.index', compact('title', 'expensesCategory'));
     }
     public function create()
@@ -25,7 +25,7 @@ class ExpensesCategoryController extends Controller
             'name' => 'required|min:4'
         ]);
 
-        ExpensesCategory::create([
+        ExpenseCategory::create([
             'name' => $validateData['name']
         ]);
         return redirect('/expenses-category')->with('Berhasil', 'Kategori ' . $request->name . ' Berhasil Ditambahkan!');
@@ -34,7 +34,7 @@ class ExpensesCategoryController extends Controller
     public function edit($id)
     {
         $title = "Edit Kategori Pengeluaran";
-        $expensesCategory   =   ExpensesCategory::where('id', $id)->get();
+        $expensesCategory   =   ExpenseCategory::where('id', $id)->get();
         return view('contents.expensescategory.edit', compact('title', 'expensesCategory'));
     }
 
@@ -44,7 +44,7 @@ class ExpensesCategoryController extends Controller
             'name' => 'required'
         ]);
 
-        ExpensesCategory::where('id', $id)->update([
+        ExpenseCategory::where('id', $id)->update([
             'name' => $validateData['name']
         ]);
         return redirect('/expenses-category')->with('Berhasil', 'Kategori ' . $request->name . ' Berhasil Diperbarui');
@@ -52,8 +52,8 @@ class ExpensesCategoryController extends Controller
 
     public function delete($id)
     {
-        $Category = ExpensesCategory::where('id', $id)->first();
-        ExpensesCategory::where('id', $id)->delete();
+        $Category = ExpenseCategory::where('id', $id)->first();
+        ExpenseCategory::where('id', $id)->delete();
         return redirect('/expenses-category')->with('Berhasil', 'Kategori' . $Category->name . ' Berhasil Dihapus');
     }
 }

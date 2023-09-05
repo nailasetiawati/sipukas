@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\ExpensesCategory;
+use App\Models\ExpenseCategory;
 use Illuminate\Database\Seeder;
 
 class ExpensesCategorySeeder extends Seeder
@@ -14,10 +14,10 @@ class ExpensesCategorySeeder extends Seeder
      */
     public function run()
     {
-        ExpensesCategory::create([
+        ExpenseCategory::create([
             'name'  =>  'Pembelian Barang'
         ]);
-        ExpensesCategory::create([
+        ExpenseCategory::create([
             'name'  =>  'ATK'
         ]);
     }

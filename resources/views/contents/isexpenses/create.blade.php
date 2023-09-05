@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form action="/isexpenses/create" method="POST">
+                <form action="/isexpense/create" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group mb-3">
                         <label for="nominal" class="text-primary">Nominal :</label>
@@ -27,28 +27,46 @@
                     </div>
                     <div class="form-group mb-3">
                         <label for="isExpenses" class="text-primary">Kategori Pengeluaran :</label>
-                        <select name="is_expenses_id" id="isExpenses" class="form-control">
-                            <option value="1">Pembelian Barang</option>
-                            <option value="2">ATK</option>
+                        <select name="expense_category_id" id="isExpenses" class="form-control @error('expense_category_id')
+                            is-invalid
+                        @enderror">
+                            <option value="" selected>Pilih Kategori....</option>
+                            @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                
+                            @endforeach
                         </select>
+                        @error('expense_category_id')
+                            <p class="text-danger">{{ $message }}</p>
+                        @enderror
                     </div>
                     <div class="form-group mb-3">
                         <label for="name" class="text-primary">Deskripsi :</label>
-                        <input type="text" name="name" class="form-control @error('name')
+                        <input type="text" name="description" class="form-control @error('description')
                             is-invalid
                         @enderror">
-                        @error('name')
+                        @error('description')
                             <p class="text-danger">{{ $message }}</p>
                         @enderror
                     </div>
-                    <div class="form-group mb-3">
-                        <label for="name" class="text-primary">Bukti Gambar :</label>
-                        <input type="file" name="name" class="form-control @error('name')
+                    <label for="name" class="text-primary">Bukti Gambar :</label>
+                    <div class="custom-file">
+                        <input type="file" name="image" class="custom-file-input @error('image')
                             is-invalid
-                        @enderror">
-                        @error('name')
-                            <p class="text-danger">{{ $message }}</p>
+                        @enderror" id="image" onchange="previewImage()">
+                        <label class="custom-file-label" for="image">Choose file</label>
+                        @error('image')
+                        <p class="text-danger">{{ $message }}</p>
+
                         @enderror
+
+                      </div>
+                      <div class="col-2 mt-3">
+                        <div class="card shadow">
+                            <div class="mx-auto">
+                                <img src="https://static.vecteezy.com/system/resources/previews/000/424/804/original/upload-icon-vector-illustration.jpg" class="img-preview img-fluid" height="100" width="150" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="float-right mt-5">
                         <a href="/isexpense" class="btn btn-danger">Cancel</a>
@@ -59,4 +77,17 @@
         </div>
     </section>
 </div>
+<script>
+    function previewImage(){
+    const image = document.querySelector('#image');
+    const imgPreview = document.querySelector('.img-preview');
+
+    const oFReader = new FileReader();
+    oFReader.readAsDataURL(image.files[0]);
+    
+    oFReader.onload = function(oFREvent){
+        imgPreview.src = oFREvent.target.result;
+    }
+}
+</script>
 @endsection
