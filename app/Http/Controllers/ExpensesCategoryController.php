@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ExpenseCategory;
+use App\Models\IsExpense;
 
 class ExpensesCategoryController extends Controller
 {
@@ -52,8 +53,13 @@ class ExpensesCategoryController extends Controller
 
     public function delete($id)
     {
-        $Category = ExpenseCategory::where('id', $id)->first();
-        ExpenseCategory::where('id', $id)->delete();
-        return redirect('/expenses-category')->with('Berhasil', 'Kategori' . $Category->name . ' Berhasil Dihapus');
+        $isexpense = IsExpense::where('expense_category_id', $id)->get();
+        if ($isexpense->count() > 0) {
+            return redirect('/expenses-category')->with('Gagal', 'Kategori ini masih digunakan!');
+        } else {
+            $Category = ExpenseCategory::where('id', $id)->first();
+            ExpenseCategory::where('id', $id)->delete();
+            return redirect('/expenses-category')->with('Berhasil', 'Kategori' . $Category->name . ' Berhasil Dihapus');
+        }
     }
 }

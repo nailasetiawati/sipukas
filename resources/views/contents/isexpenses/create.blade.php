@@ -30,7 +30,7 @@
                         <select name="expense_category_id" id="isExpenses" class="form-control @error('expense_category_id')
                             is-invalid
                         @enderror">
-                            <option value="" selected>Pilih Kategori....</option>
+                            <option value="" disabled selected>Pilih Kategori....</option>
                             @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 

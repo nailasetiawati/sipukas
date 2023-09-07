@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DonorsCategory;
 use Illuminate\Http\Request;
 use Alert;
+use App\Models\Income;
 
 class DonorsCategoryController extends Controller
 {
@@ -59,9 +60,14 @@ class DonorsCategoryController extends Controller
 
     public function delete($id)
     {
-        $category = DonorsCategory::where('id', $id)->first();
-        DonorsCategory::where('id', $id)->delete();
+        $income = Income::where('donor_category_id', $id)->get();
 
-        return redirect('/donors-category')->with('Berhasil', 'Kategori ' . $category->name . ' Berhasil Dihapus!');
+        if ($income->count() > 0) {
+            return redirect('/donors-category')->with('Gagal', 'Kategori ini masih digunakan untuk data dana pemasukan!');
+        } else {
+            $category = DonorsCategory::where('id', $id)->first();
+            DonorsCategory::where('id', $id)->delete();
+            return redirect('/donors-category')->with('Berhasil', 'Kategori ' . $category->name . ' Berhasil Dihapus!');
+        }
     }
 }

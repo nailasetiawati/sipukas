@@ -1,7 +1,7 @@
 @extends('app.main')
 
 @section('content')
-{{-- @foreach ($expenses as $item)
+@foreach ($expenses as $item)
 <!-- Modal -->
 <div class="modal fade" id="modalDelete{{ $item->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
@@ -14,11 +14,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                Apakah anda yakin akan menghapus dana pengeluaran {{ $item->nominal }} untuk?
+                Apakah anda yakin akan menghapus dana pengeluaran {{ $item->nominal }} untuk {{ $item->ExpenseCategory->name }}?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <form action="/incomes/{{ $item->id }}/delete" method="get">
+                <form action="/isexpense/{{ $item->id }}/delete" method="get">
                     @csrf
                     <button type="submit" class="btn btn-danger">Yakin</button>
                 </form>
@@ -26,7 +26,7 @@
         </div>
     </div>
 </div>
-@endforeach --}}
+@endforeach
      <!-- Main Content -->
      <div class="main-content">
         <section class="section">
@@ -81,7 +81,8 @@
                         <td class="mx-auto p-2"><img src="/img/expense-image/{{ $data->image }}" height="100" width="150"></td>
                         <td class="px-5 text-center">
                             <a href="/isexpense/{{ $data->id }}/edit" class="btn btn-success"><i class="fas fa-pen"></i></a>
-                            <a href="/isexpense/{{ $data->id }}/delete" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                            <button class="btn btn-danger" data-toggle="modal" data-target="#modalDelete{{ $data->id }}"><i
+                                class="fas fa-trash"></i></button>
                         </td>
                     </tr>
                     @endforeach

@@ -56,7 +56,6 @@ class IsExpensesController extends Controller
     public function update(Request $request, $id)
     {
         $category = ExpenseCategory::where('id', $request->expense_category_id)->first();
-        dd($category->name);
         $validateData = $request->validate([
             'nominal' => 'required',
             'expense_category_id' => 'required',
