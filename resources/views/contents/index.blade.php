@@ -4,8 +4,19 @@
      <!-- Main Content -->
      <div class="main-content">
         <section class="section">
-          <div class="section-header">
+          <div class="d-block section-header">
             <h1>{{ $title }}</h1>
+            <div class="float-right">
+              <li class="dropdown list-unstyled">
+                <a class="nav-link dropdown-toggle" id="thisDay" role="button" data-toggle="dropdown" aria-expanded="false">
+                  Hari Ini
+                </a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" onclick="getToday()">Hari Ini</a>
+                  <a class="dropdown-item" onclick="getYesterday()">Kemarin</a>
+                </div>
+              </li>
+            </div>
           </div>
           <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
@@ -15,10 +26,10 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Pemasukan (Minggu ini)</h4>
+                    <h4 id="incomeTitle">Pemasukan (Hari ini)</h4>
                   </div>
-                  <div class="card-body">
-                    10
+                  <div class="card-body" id="incomeResult">
+                    {{ $income }}
                   </div>
                 </div>
               </div>
@@ -30,10 +41,10 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Pengeluaran (Minggu ini)</h4>
+                    <h4 id="expenseTitle">Pengeluaran (Hari ini)</h4>
                   </div>
-                  <div class="card-body">
-                    10
+                  <div class="card-body" id="expenseResult">
+                    {{ $expense }}
                   </div>
                 </div>
               </div>
@@ -45,10 +56,10 @@
                 </div>
                 <div class="card-wrap">
                   <div class="card-header">
-                    <h4>Selisih Uang Kas</h4>
+                    <h4 id="profitTitle">Selisih Uang Kas</h4>
                   </div>
-                  <div class="card-body">
-                    10
+                  <div class="card-body" id="profitResult">
+                    {{ $profit }}
                   </div>
                 </div>
               </div>
@@ -68,4 +79,37 @@
           </div>
         </section>
       </div>
+      @section('script')
+          <script>
+            function getYesterday(){
+              $('#incomeTitle').html('');
+              $('#incomeTitle').append('Pemasukan (Kemarin)');
+              $('#incomeResult').html('');
+              $('#incomeResult').append('{{ $incomeYesterday }}');
+              $('#thisDay').html('');
+              $('#thisDay').append('Kemarin');
+              $('#expenseTitle').html('');
+              $('#expenseTitle').append('Pengeluaran (Kemarin)');
+              $('#expenseResult').html('');
+              $('#expenseResult').append('{{ $expenseYesterday }}');
+              $('#profitResult').html('');
+              $('#profitResult').append('{{ $profitYesterday }}');
+            }
+            
+            function getToday() {
+              $('#incomeTitle').html('');
+              $('#incomeTitle').append('Pemasukan (Hari Ini)');
+              $('#incomeResult').html('');
+              $('#incomeResult').append('{{ $income }}');
+              $('#thisDay').html('');
+              $('#thisDay').append('Hari Ini');
+              $('#expenseTitle').html('');
+              $('#expenseTitle').append('Pengeluaran (Hari Ini)');
+              $('#expenseResult').html('');
+              $('#expenseResult').append('{{ $expense }}');
+              $('#profitResult').html('');
+              $('#profitResult').append('{{ $profit }}');
+            }
+          </script>
+      @endsection
 @endsection

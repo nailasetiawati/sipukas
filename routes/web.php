@@ -62,3 +62,4 @@ Route::get('/isexpense/{id}/delete', [IsExpensesController::class, 'destroy'])->
 
 // Report
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
+Route::post('/report', [ReportController::class, 'index'])->middleware('auth');

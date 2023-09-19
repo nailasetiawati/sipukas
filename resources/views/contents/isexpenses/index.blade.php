@@ -75,7 +75,7 @@
                     @foreach ($expenses as $data)   
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>Rp. {{ $data->nominal }}</td>
+                        <td>{{ "Rp " . number_format($data->nominal,2,',','.') }}</td>
                         <td>{{ $data->ExpenseCategory->name }}</td>
                         <td>{{ $data->description }}</td>
                         <td class="mx-auto p-2"><img src="/img/expense-image/{{ $data->image }}" height="100" width="150"></td>

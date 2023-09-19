@@ -82,7 +82,7 @@
                     @foreach ($incomes as $data)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>Rp. {{ $data->nominal }}</td>
+                        <td>{{ "Rp " . number_format($data->nominal,2,',','.') }}</td>
                         <td>{{ $data->donor_name }}</td>
                         <td>{{ $data->DonorsCategory->name }}</td>
                         <td class="px-5 text-center">
