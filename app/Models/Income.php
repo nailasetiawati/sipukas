@@ -12,16 +12,6 @@ class Income extends Model
 
     protected $guarded = ['id'];
 
-    public function getCreatedAtAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
-    }
-
-    public function getUpdatedAtAttribute($date)
-    {
-        return Carbon::createFromFormat('Y-m-d', $date)->format('Y-m-d');
-    }
-
     public function DonorsCategory()
     {
         return $this->belongsTo(DonorsCategory::class, 'donor_category_id');

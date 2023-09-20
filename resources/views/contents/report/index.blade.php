@@ -183,20 +183,12 @@
                   </tr>
               </thead>
               <tbody>
-                @foreach ($profits as $profit)
-                @php
-                    $i = 0;
-                @endphp
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ "Rp " . number_format($profit[$i]['income'],2,',','.') }}</td>
-                        <td>{{ "Rp " . number_format($profit[$i]['expense'],2,',','.') }}</td>
-                        <td>{{ "Rp " . number_format($profit[$i]['profit'],2,',','.') }}</td>
+                        <td>1</td>
+                        <td>{{ "Rp " . number_format($totalincome,2,',','.') }}</td>
+                        <td>{{ "Rp " . number_format($totalexpenses,2,',','.') }}</td>
+                        <td>{{ "Rp " . number_format($profits,2,',','.') }}</td>
                     </tr>
-                    @php
-                        $i++
-                    @endphp
-                @endforeach
               </tbody>
           </table>
       </div>
