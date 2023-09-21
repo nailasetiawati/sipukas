@@ -1,13 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\IncomesController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\IsExpensesController;
 use App\Http\Controllers\DonorsCategoryController;
 use App\Http\Controllers\ExpensesCategoryController;
-use App\Http\Controllers\IncomesController;
-use App\Http\Controllers\IsExpensesController;
-use App\Http\Controllers\ReportController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,18 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/pay', function () {
+    return view('pay');
+});
+
+
 // Auth
-Route::get('/', [AuthController::class, 'index'])->name('login')->middleware('guest');
-Route::post('/', [AuthController::class, 'authenticated']);
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'authenticated']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 // Dashboard
@@ -63,3 +73,6 @@ Route::get('/isexpense/{id}/delete', [IsExpensesController::class, 'destroy'])->
 // Report
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
 Route::post('/report', [ReportController::class, 'index'])->middleware('auth');
+
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
+Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth');

@@ -1,5 +1,11 @@
 @extends('app.main')
 
+@section('script')
+    <script src="/js/chart.js"></script>
+    @include('components.script.incomechart')
+    @include('components.script.profitchart')
+@endsection
+
 @section('content')
      <!-- Main Content -->
      <div class="main-content">
@@ -18,6 +24,14 @@
               </li>
             </div>
           </div>
+          @if (session('Berhasil'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+              {{ session('Berhasil') }}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          @endif
           <div class="row">
             <div class="col-lg-4 col-md-6 col-sm-6 col-12">
               <div class="card card-statistic-1">
@@ -64,16 +78,16 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-6 col-md-12">
-              <div class="card bg-primary p-5"> 
-              </div>
-            </div>
-            <div class="col-lg-6 col-md-12">
-              <div class="card bg-primary p-5"> 
+            <div class="col-12">
+              <div class="card p-5"> 
+                <h4 align="center">Statistik Keuangan</h4>
+                    <canvas id="incomeChart" class="chartjs mb-3"></canvas>
               </div>
             </div>
             <div class="col-12">
-              <div class="card bg-primary p-5"> 
+              <div class="card p-5"> 
+                <h4 align="center">Statistik Selisih Keuangan</h4>
+                    <canvas id="profitChart" class="chartjs mb-3"></canvas>
               </div>
             </div>
           </div>

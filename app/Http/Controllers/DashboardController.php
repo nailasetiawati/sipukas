@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Income;
 use App\Models\IsExpense;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -26,6 +27,15 @@ class DashboardController extends Controller
         $expenseYesterday = "Rp " . number_format($expensesYesterday, 2, ',', '.');
         $profitsYesterday = $incomesYesterday - $expensesYesterday;
         $profitYesterday = "Rp " . number_format($profitsYesterday, 2, ',', '.');
-        return view('contents.index', compact('title', 'income', 'expense', 'profit', 'incomeYesterday', 'expenseYesterday', 'profitYesterday'));
+        $label = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+        $labels = json_encode($label);
+        for ($month = 1; $month < 13; $month++) {
+            $incms = collect(DB::select("select nominal from incomes where month(created_at) = '$month'"))->sum('nominal');
+            $totalIncms[] = $incms;
+            $expns = collect(DB::select("select nominal from is_expenses where month(created_at) = '$month'"))->sum('nominal');
+            $totalExpns[] = $expns;
+            $totalProfits[] = $incms - $expns;
+        }
+        return view('contents.index', compact('title', 'income', 'expense', 'profit', 'incomeYesterday', 'expenseYesterday', 'profitYesterday', 'label', 'totalIncms', 'totalExpns', 'totalProfits'));
     }
 }
