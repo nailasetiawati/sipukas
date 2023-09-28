@@ -58,8 +58,13 @@
                   <i class="fas fa-download"></i>
               </button>
               <div class="dropdown-menu w-100 text-center">
-                  <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
-                      Excel</button>
+                  @if (Request::get('date') == null)
+                  <a href="/report/excel/income" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
+                    Excel</a>
+                  @else
+                  <a href="/report/excel/income?date={{ Request::get('date') }}" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
+                    Excel</a>
+                  @endif
                   <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
                       PDF</button>
                   <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
@@ -77,9 +82,9 @@
                   <thead class="thead-light">
                       <tr>
                           <th>No</th>
-                          <th>Nominal</th>
                           <th>Nama Donatur</th>
                           <th>Kategori Donatur</th>
+                          <th>Nominal</th>
                       </tr>
                   </thead>
                   <tbody>
@@ -107,8 +112,13 @@
                 <i class="fas fa-download"></i>
             </button>
             <div class="dropdown-menu w-100 text-center">
-                <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
-                    Excel</button>
+                @if (Request::get('date') == null)
+                  <a href="/report/excel/expense" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
+                    Excel</a>
+                  @else
+                  <a href="/report/excel/expense?date={{ Request::get('date') }}" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
+                    Excel</a>
+                  @endif
                 <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
                     PDF</button>
                 <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
@@ -126,19 +136,19 @@
                 <thead class="thead-light">
                     <tr>
                         <th>No</th>
-                        <th>Nominal</th>
+                        <th>Bukti Gambar</th>
                         <th>Kategori Pengeluaran</th>
                         <th>Deskripsi</th>
-                        <th>Bukti Gambar</th>
+                        <th>Nominal</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($expenses as $expense)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td class="mx-auto p-2"><img src="/img/expense-image/{{ $expense->image }}" height="100" width="150"></td>
                             <td>{{ $expense->ExpenseCategory->name }}</td>
                             <td>{{ $expense->description }}</td>
-                            <td class="mx-auto p-2"><img src="/img/expense-image/{{ $expense->image }}" height="100" width="150"></td>
                             <td class="text-right">{{ "Rp " . number_format($expense->nominal,2,',','.') }}</td>
                         </tr>
                     @endforeach

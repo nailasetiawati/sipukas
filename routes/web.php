@@ -73,6 +73,15 @@ Route::get('/isexpense/{id}/delete', [IsExpensesController::class, 'destroy'])->
 // Report
 Route::get('/report', [ReportController::class, 'index'])->middleware('auth');
 Route::post('/report', [ReportController::class, 'index'])->middleware('auth');
+Route::get('/report/excel/income', [ReportController::class, 'incomeexcel'])->middleware('auth');
+Route::get('/report/excel/expense', [ReportController::class, 'expenseexcel'])->middleware('auth');
+Route::get('/report/excel/profit', [ReportController::class, 'profitexcel'])->middleware('auth');
+Route::get('/report/pdf/income', [ReportController::class, 'incomepdf'])->middleware('auth');
+Route::get('/report/pdf/expense', [ReportController::class, 'expensepdf'])->middleware('auth');
+Route::get('/report/pdf/profit', [ReportController::class, 'profitpdf'])->middleware('auth');
+Route::get('/report/print/income', [ReportController::class, 'incomeprint'])->middleware('auth');
+Route::get('/report/print/expense', [ReportController::class, 'expenseprint'])->middleware('auth');
+Route::get('/report/print/profit', [ReportController::class, 'profitprint'])->middleware('auth');
 
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth');

@@ -1,11 +1,5 @@
 @extends('app.main')
 
-@section('script')
-    <script src="/js/chart.js"></script>
-    @include('components.script.incomechart')
-    @include('components.script.profitchart')
-@endsection
-
 @section('content')
      <!-- Main Content -->
      <div class="main-content">
@@ -78,16 +72,26 @@
                 </div>
               </div>
             </div>
-            <div class="col-12">
+            <div class="col-8">
+              <div class="card"> 
+                <div class="card-body">
+                  <h4 align="center">Statistik Keuangan</h4>
+                  <canvas id="incomeChart" class="chartjs mb-3"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-4">
               <div class="card p-5"> 
-                <h4 align="center">Statistik Keuangan</h4>
-                    <canvas id="incomeChart" class="chartjs mb-3"></canvas>
+                <h4 align="center">Sumber Pemasukan</h4>
+                    <canvas id="yanaBool" class="chartjs mb-3"></canvas>
               </div>
             </div>
             <div class="col-12">
               <div class="card p-5"> 
-                <h4 align="center">Statistik Selisih Keuangan</h4>
-                    <canvas id="profitChart" class="chartjs mb-3"></canvas>
+                <div class="card-body">
+                  <h4 align="center">Statistik Selisih Keuangan</h4>
+                  <canvas id="profitChart" class="chartjs mb-3"></canvas>
+                </div>
               </div>
             </div>
           </div>
@@ -124,6 +128,9 @@
               $('#profitResult').html('');
               $('#profitResult').append('{{ $profit }}');
             }
-          </script>
+            </script>
+    <script src="/js/chart.js"></script>
+    @include('components.script.incomechart')
+    @include('components.script.profitchart')
       @endsection
 @endsection

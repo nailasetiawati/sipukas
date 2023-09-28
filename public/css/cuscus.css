@@ -1,0 +1,17 @@
+.hero-h {
+    height: 600px;
+}
+
+.about-h {
+    height: 600px;
+}
+
+@media (min-width:320px) { 
+    .hero-h {
+        height: 1000px;
+    }
+
+    .about-h {
+        height: 1000px;
+    }
+}

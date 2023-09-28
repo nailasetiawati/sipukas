@@ -13,17 +13,17 @@ class DashboardController extends Controller
     public function index()
     {
         $title = "Dashboard";
-        $now = Carbon::now()->format('Y-m-d');
-        $incomes = Income::where('created_at', '>=', $now)->sum('nominal');
+        $now = Carbon::now();
+        $incomes = Income::whereDate('created_at', $now->format('Y-m-d'))->sum('nominal');
         $income = "Rp " . number_format($incomes, 2, ',', '.');
-        $expenses = IsExpense::where('created_at', '>=', $now)->sum('nominal');
+        $expenses = IsExpense::whereDate('created_at', $now->format('Y-m-d'))->sum('nominal');
         $expense = "Rp " . number_format($expenses, 2, ',', '.');
         $profits = $incomes - $expenses;
         $profit = "Rp " . number_format($profits, 2, ',', '.');
-        $yesterday = Carbon::now()->subDay()->format('Y-m-d');
-        $incomesYesterday = Income::where('created_at', '>=', $yesterday)->sum('nominal');
+        $yesterday = Carbon::yesterday()->format('Y-m-d');
+        $incomesYesterday = Income::whereDate('created_at', $yesterday)->sum('nominal');
         $incomeYesterday = "Rp " . number_format($incomesYesterday, 2, ',', '.');
-        $expensesYesterday = IsExpense::where('created_at', '>=', $yesterday)->sum('nominal');
+        $expensesYesterday = IsExpense::whereDate('created_at', $yesterday)->sum('nominal');
         $expenseYesterday = "Rp " . number_format($expensesYesterday, 2, ',', '.');
         $profitsYesterday = $incomesYesterday - $expensesYesterday;
         $profitYesterday = "Rp " . number_format($profitsYesterday, 2, ',', '.');

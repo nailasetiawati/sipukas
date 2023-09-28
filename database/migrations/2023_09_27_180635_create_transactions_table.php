@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIncomesTable extends Migration
+class CreateTransactionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateIncomesTable extends Migration
      */
     public function up()
     {
-        Schema::create('incomes', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('nominal');
             $table->string('donor_name');
             $table->foreignId('donor_category_id');
-            $table->tinyInteger('pay_from')->default(1)->comment('1 For Admin, 2 For Web');
+            $table->tinyInteger('status')->default(0)->comment('0 for pending, 1 For Success, 2 For Failure');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateIncomesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('incomes');
+        Schema::dropIfExists('transactions');
     }
 }
