@@ -65,10 +65,15 @@
                   <a href="/report/excel/income?date={{ Request::get('date') }}" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
                     Excel</a>
                   @endif
-                  <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
-                      PDF</button>
-                  <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
-                      Print</button>
+                  @if (Request::get('date') == null)
+                  <a href="/report/pdf/income" class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
+                    PDF</a>
+                  @else
+                  <a href="/report/pdf/income?date={{ Request::get('date') }}" class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
+                    PDF</a>
+                  @endif
+                  <a href="/report/print/income" class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
+                      Print</a>
               </div>
           </div>
           </div>
@@ -119,10 +124,15 @@
                   <a href="/report/excel/expense?date={{ Request::get('date') }}" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
                     Excel</a>
                   @endif
-                <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
-                    PDF</button>
-                <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
-                    Print</button>
+                  @if (Request::get('date') == null)
+                  <a href="/report/pdf/expense" class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
+                    PDF</a>
+                  @else
+                  <a href="/report/pdf/expense?date={{ Request::get('date') }}" class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
+                    PDF</a>
+                  @endif
+                  <a href="/report/print/expense" class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
+                    Print</a>
             </div>
         </div>
         </div>
@@ -168,12 +178,22 @@
               <i class="fas fa-download"></i>
           </button>
           <div class="dropdown-menu w-100 text-center">
-              <button class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
-                  Excel</button>
-              <button class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
-                  PDF</button>
-              <button class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
-                  Print</button>
+            @if (Request::get('date') == null)
+            <a href="/report/excel/profit" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
+              Excel</a>
+            @else
+            <a href="/report/excel/profit?date={{ Request::get('date') }}" class="btn btn-sm btn-success col w-75 mb-2 dt-excel"><i class="fas fa-file-excel"></i>
+              Excel</a>
+            @endif
+            @if (Request::get('date') == null)
+            <a href="/report/pdf/profit" class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
+              PDF</a>
+            @else
+            <a href="/report/pdf/profit?date={{ Request::get('date') }}" class="btn btn-sm btn-danger col w-75 mb-2 dt-pdf"><i class="fas fa-file-pdf"></i>
+              PDF</a>
+            @endif
+            <a href="/report/print/profit" class="btn btn-sm btn-secondary col w-75 mb-2 dt-print"><i class="fas fa-print"></i>
+                Print</a>
           </div>
       </div>
       </div>

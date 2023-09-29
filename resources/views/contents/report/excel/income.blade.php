@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dana Pengeluaran - SIPUKAS</title>
+	<title>Dana Pemasukan - SIPUKAS</title>
 </head>
 <body>
 	<style type="text/css">
@@ -26,14 +26,28 @@
 		border-radius: 2px;
 	}
 	</style>
- 
+	@php
+		if (Request::get('date') != null) {
+			$date = Request::get('date');
+		}else {
+			$date = Carbon\Carbon::now()->format('Y-m-d');
+		}
+	@endphp
+	@if ($date != null)	
+	<?php
+	header("Content-type: application/vnd-ms-excel");
+	header("Content-Disposition: attachment; filename=Dana_Pemasukan_SIPUKAS_$date.xls");
+	?>
+	@else
 	<?php
 	header("Content-type: application/vnd-ms-excel");
 	header("Content-Disposition: attachment; filename=Dana_Pemasukan_SIPUKAS.xls");
 	?>
+	@endif
+ 
  
 	<center>
-		<h4>Dana Pengeluaran - SIPUKAS</h4>
+		<h5>Dana Pemasukan - SIPUKAS (@php echo $date @endphp)</h5>
 	</center>
  
 	<table border="1">

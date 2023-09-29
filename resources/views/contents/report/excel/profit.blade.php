@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dana Pengeluaran - SIPUKAS</title>
+	<title>Selisih - SIPUKAS</title>
 </head>
 <body>
 	<style type="text/css">
@@ -27,13 +27,27 @@
 	}
 	</style>
  
-	<?php
-	header("Content-type: application/vnd-ms-excel");
-	header("Content-Disposition: attachment; filename=Selisih $now - SIPUKAS.xls");
-	?>
+ @php
+		if (Request::get('date') != null) {
+			$date = Request::get('date');
+		}else {
+			$date = Carbon\Carbon::now()->format('Y-m-d');
+		}
+	@endphp
+@if ($date != null)	
+<?php
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Selisih_SIPUKAS_$date.xls");
+?>
+@else
+<?php
+header("Content-type: application/vnd-ms-excel");
+header("Content-Disposition: attachment; filename=Selisih_SIPUKAS.xls");
+?>
+@endif
  
 	<center>
-		<h1>Dana Pengeluaran - SIPUKAS</h1>
+		<h5>Selisih - SIPUKAS (@php echo $date @endphp)</h5>
 	</center>
  
 	<table border="1">
@@ -42,6 +56,12 @@
 			<th>Dana Pemasukan</th>
 			<th>Dana Pengeluaran</th>
 			<th>Total Selisih</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>{{ "Rp " . number_format($totalincome,2,',','.') }}</td>
+			<td>{{ "Rp " . number_format($totalexpenses,2,',','.') }}</td>
+			<td>{{ "Rp " . number_format($profits,2,',','.') }}</td>
 		</tr>
 	</table>
 </body>
