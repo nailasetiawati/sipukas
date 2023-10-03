@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DonorsCategory;
 use Carbon\Carbon;
 use App\Models\Income;
 use App\Models\IsExpense;
@@ -36,6 +37,8 @@ class DashboardController extends Controller
             $totalExpns[] = $expns;
             $totalProfits[] = $incms - $expns;
         }
-        return view('contents.index', compact('title', 'income', 'expense', 'profit', 'incomeYesterday', 'expenseYesterday', 'profitYesterday', 'label', 'totalIncms', 'totalExpns', 'totalProfits'));
+        $adminCount = Income::where('pay_from', 1)->count();
+        $webCount = Income::where('pay_from', 2)->count();
+        return view('contents.index', compact('title', 'income', 'expense', 'profit', 'incomeYesterday', 'expenseYesterday', 'profitYesterday', 'label', 'totalIncms', 'totalExpns', 'totalProfits', 'adminCount', 'webCount'));
     }
 }

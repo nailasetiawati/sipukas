@@ -27,7 +27,7 @@
 	}
 	</style>
  
-	<table border="1">
+	<table border="1" id="profit">
 		<tr>
 			<th>No</th>
 			<th>Dana Pemasukan</th>
@@ -41,8 +41,12 @@
 			<td>{{ "Rp " . number_format($profits,2,',','.') }}</td>
 		</tr>
 	</table>
+    <script src="/modules/jquery.min.js"></script>
+	<script src="/js/print.min.js"></script>
     <script>
-        window.print();
+        $(document).ready(function(){
+			printJS('profit', 'html')
+		})
     </script>
 </body>
 </html>

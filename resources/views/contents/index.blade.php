@@ -72,7 +72,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-8">
+            <div class="col-lg-8 col-sm-12">
               <div class="card"> 
                 <div class="card-body">
                   <h4 align="center">Statistik Keuangan</h4>
@@ -80,10 +80,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-4">
-              <div class="card p-5"> 
+            <div class="col-lg-4 col-sm-12">
+              <div class="card mx-auto"> 
                 <h4 align="center">Sumber Pemasukan</h4>
-                    <canvas id="yanaBool" class="chartjs mb-3"></canvas>
+                    <canvas id="paymentChart" class="chartjs mb-5"></canvas>
               </div>
             </div>
             <div class="col-12">
@@ -132,5 +132,6 @@
     <script src="/js/chart.js"></script>
     @include('components.script.incomechart')
     @include('components.script.profitchart')
+    @include('components.script.payment')
       @endsection
 @endsection

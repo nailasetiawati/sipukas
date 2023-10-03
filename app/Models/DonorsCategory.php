@@ -15,4 +15,9 @@ class DonorsCategory extends Model
     {
         return $this->hasMany(Income::class);
     }
+
+    public function Transaction()
+    {
+        return $this->hasMany(Transaction::class);
+    }
 }

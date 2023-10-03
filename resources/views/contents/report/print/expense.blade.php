@@ -27,7 +27,7 @@
 	}
 	</style>
  
-	<table border="1">
+	<table border="1" id="expense">
 		<tr>
 			<th>No</th>
 			<th>Kategori Pengeluaran</th>
@@ -43,8 +43,12 @@
 			</tr>
 		@endforeach
 	</table>
+    <script src="/modules/jquery.min.js"></script>
+	<script src="/js/print.min.js"></script>
     <script>
-        window.print();
+        $(document).ready(function(){
+			printJS('expense', 'html')
+		})
     </script>
 </body>
 </html>

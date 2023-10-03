@@ -9,6 +9,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\IsExpensesController;
 use App\Http\Controllers\DonorsCategoryController;
 use App\Http\Controllers\ExpensesCategoryController;
+use App\Http\Controllers\Midtrans\PaymentCallbackController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +26,12 @@ use App\Http\Controllers\ExpensesCategoryController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/pay', function () {
-    return view('pay');
-});
+
+Route::get('/pay', [TransactionController::class, 'index']);
+Route::post('/pay', [TransactionController::class, 'store']);
+Route::get('/pay/{id}', [TransactionController::class, 'show']);
+
+Route::get('payments/midtrans-notification', [PaymentCallbackController::class, 'receive']);
 
 
 // Auth

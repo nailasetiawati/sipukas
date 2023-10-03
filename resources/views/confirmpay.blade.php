@@ -36,46 +36,53 @@
         <div class="container" style="margin-top: 120px;">
             <div class="text-center">
                 <h3 class="text-white">Bayar uang kas!</h3>
-                <h6 class="text-white">Silahkan isi data dibawah untuk membayar uang kas!</h6>
+                <div class="col-lg-6 col-sm-12 mx-auto">
+                    <h6 class="text-white">Jika anda yakin dengan data dibawah silahkan klik tombol bayar untuk melakukan pembayaran!</h6>
+                </div>
+                <div class="col-6 mx-auto text-center">
+                    @if (session('Berhasil'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('Berhasil') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+                @if (session('Gagal'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('Gagal') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+                </div>
             </div>
             <div class="mx-auto">
                 <div class="col-lg-6 col-sm-12 mx-auto">
                     <div class="card p-3">
-                        <form action="/pay" method="POST">
-                            @csrf
+                        <form action="">
                             <div class="form-group mb-3">
                                 <label for="name" class="text-primary">Nama :</label>
-                                <input type="text" name="name" id="name" class="form-control @error('name')
-                                    is-invalid
-                                @enderror" placeholder="Masukkan Nama....">
-                                @error('name')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <input type="text" name="name" id="name" class="form-control" value="{{ $transaction->donor_name }}" readonly>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="grade" class="text-primary">Jabatan :</label>
-                                <select name="grade" id="grade" class="form-control @error('grade')
-                                    is-invalid
-                                @enderror">
-                                    <option value="">Pilih Jabatan....</option>
-                                    @foreach ($donors as $item)
-                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                    @endforeach
+                                <select name="grade" id="grade" class="form-control" disabled>
+                                    <option value="1">{{ $transaction->DonorsCategory->name }}</option>
                                 </select>
-                                @error('grade')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
                             </div>
                             <div class="form-group mb-3">
                                 <label for="nominal" class="text-primary">Nominal :</label>
-                                <input type="number" name="nominal" id="nominal" class="form-control @error('nominal')
-                                    is-invalid
-                                @enderror" placeholder="Masukkan Jumlah Nominal....">
-                                @error('nominal')
-                                    <p class="text-danger">{{ $message }}</p>
-                                @enderror
+                                <input type="text" name="nominal" id="nominal" class="form-control" readonly value="{{ "Rp " . number_format($transaction->total_price,2,',','.') }}">
                             </div>
-                            <button type="submit" class="btn btn-lg w-100 btn-primary">Submit</button>
+                            @if ($transaction->payment_status == 1)
+                            <button type="submit" class="btn btn-lg w-100 btn-primary" id="pay-button">Bayar</button>
+                            @else
+                                <div class="mx-auto text-center">
+                                    <span class="badge bg-success text-white">Pembayaran Berhasil</span>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </div>
@@ -92,7 +99,36 @@
       </footer>
       {{-- End Footer --}}
 
-
+    
+      <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}">
+      </script>
+      <script>
+          const payButton = document.querySelector('#pay-button');
+          payButton.addEventListener('click', function(e) {
+              e.preventDefault();
+  
+              snap.pay('{{ $snapToken }}', {
+                  // Optional
+                  onSuccess: function(result) {
+                      /* You may add your own js here, this is just example */
+                      // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                      console.log(result)
+                  },
+                  // Optional
+                  onPending: function(result) {
+                      /* You may add your own js here, this is just example */
+                      // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                      console.log(result)
+                  },
+                  // Optional
+                  onError: function(result) {
+                      /* You may add your own js here, this is just example */
+                      // document.getElementById('result-json').innerHTML += JSON.stringify(result, null, 2);
+                      console.log(result)
+                  }
+              });
+          });
+      </script>
     <script src="/modules/jquery.min.js"></script>
     <script src="/modules/popper.js"></script>
     <script src="/modules/tooltip.js"></script>

@@ -15,10 +15,12 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('nominal');
             $table->string('donor_name');
             $table->foreignId('donor_category_id');
-            $table->tinyInteger('status')->default(0)->comment('0 for pending, 1 For Success, 2 For Failure');
+            $table->string('number', 16);
+            $table->decimal('total_price', 10, 2);
+            $table->enum('payment_status', ['1', '2', '3'])->comment('1=menunggu pembayaran, 2=sudah dibayar, 3=kadaluarsa')->nullable();
+            $table->string('snap_token', 36)->nullable();
             $table->timestamps();
         });
     }
