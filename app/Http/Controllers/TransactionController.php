@@ -37,17 +37,20 @@ class TransactionController extends Controller
     public function show($id)
     {
         $transaction = Transaction::where('id', $id)->first();
-        $snapToken = $transaction->snap_token;
-        if (is_null($snapToken)) {
-            // If snap token is still NULL, generate snap token and save it to database
+        if ($transaction != null) {
+            $snapToken = $transaction->snap_token;
+            if (is_null($snapToken)) {
+                // If snap token is still NULL, generate snap token and save it to database
 
-            $midtrans = new CreateSnapTokenService($transaction);
-            $snapToken = $midtrans->getSnapToken();
+                $midtrans = new CreateSnapTokenService($transaction);
+                $snapToken = $midtrans->getSnapToken();
 
-            $transaction->snap_token = $snapToken;
-            $transaction->save();
+                $transaction->snap_token = $snapToken;
+                $transaction->save();
+            }
+            return view('confirmpay', compact('transaction', 'snapToken'));
+        } else {
+            return abort(404);
         }
-
-        return view('confirmpay', compact('transaction', 'snapToken'));
     }
 }

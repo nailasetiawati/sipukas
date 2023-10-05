@@ -19,7 +19,7 @@
           <label for="email">Email</label>
           <input id="email" type="email" class="form-control @error('email')
             is-invalid
-          @enderror" name="email" tabindex="1" required autofocus>
+          @enderror" name="email" required>
           <div class="invalid-feedback">
             Please fill in your email
           </div>

@@ -36,7 +36,7 @@ class ProfileController extends Controller
                 $user->update([
                     'name'  =>  $request->name,
                     'email' =>  $request->email,
-                    'password' => Hash::make($request['new_password'])
+                    'password' => Hash::make($request['newPassword'])
                 ]);
             } else {
                 return redirect('/profile')->with('Gagal', 'Kata sandi lama salah!');
