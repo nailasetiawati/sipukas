@@ -50,7 +50,7 @@
           </div>
           @endif
         <div class="card mb-4 dt-container">
-          <div class="col-lg-12 mt-3">
+          <div class="col-12 mt-3">
               <a href="/incomes/create" class="btn btn-sm btn-outline-primary rounded mb-2"><i
                       class="fas fa-plus"></i> Tambah</a>
           </div>

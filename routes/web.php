@@ -88,5 +88,6 @@ Route::get('/report/print/income', [ReportController::class, 'incomeprint'])->mi
 Route::get('/report/print/expense', [ReportController::class, 'expenseprint'])->middleware('auth');
 Route::get('/report/print/profit', [ReportController::class, 'profitprint'])->middleware('auth');
 
+// Profile
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth');
 Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth');

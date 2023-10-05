@@ -1,5 +1,13 @@
 @extends('app.main')
 
+@section('style')
+  @include('components.style.datatable')
+@endsection
+
+@section('script')
+    @include('components.script.datatable')
+@endsection
+
 @section('content')
 @foreach ($expenses as $item)
 <!-- Modal -->
